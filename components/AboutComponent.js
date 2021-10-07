@@ -1,10 +1,9 @@
 /** @format */
 
 import React, { Component } from "react"
-import { ScrollView, View, Text, FlatList } from "react-native"
-import { ListItem } from "react-native-elements"
-
-import { Card } from "react-native-elements"
+import { ScrollView } from "react-native"
+import { Text, FlatList } from "react-native"
+import { ListItem, Card } from "react-native-elements"
 import { PARTNERS } from "../shared/partners"
 
 const Mission = () => {
@@ -47,11 +46,6 @@ class About extends Component {
       <ScrollView>
         <Mission />
         <Card title="Community Partners">
-          <FlatList
-            data={this.state.partners}
-            renderItem={renderPartner}
-            keyExtractor={item => item.id.toString()}
-          />
           <FlatList
             data={this.state.partners}
             renderItem={renderPartner}
