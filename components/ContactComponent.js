@@ -9,9 +9,6 @@ class Contact extends Component {
     title: "Contact Us"
   }
 
-  onLog(item) {
-    console.log(item)
-  }
   render() {
     return (
       <ScrollView>
