@@ -13,11 +13,8 @@ const mapStateToProps = state => {
   };
 };
 
-//campsiteId, this.state.rating, this.state.author, this.state.text
-//campsiteId, this.state.rating, this.state.author, this.state.text 
 const mapDispatchToProps = {
   postFavorite: campsiteId => (postFavorite(campsiteId)),
-  //postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
   postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
 
 };
@@ -32,7 +29,7 @@ function RenderCampsite(props) {
         <Text style={{ margin: 10 }}>
           {campsite.description}
         </Text>
-        <View style={styles.cardrow}>
+        <View style={styles.cardRow}>
           <Icon
             name={props.favorite ? 'heart' : 'heart-o'}
             type='font-awesome'
@@ -145,13 +142,19 @@ class CampsiteInfo extends Component {
               imageSize={40}
               startingValue={this.state.rating}
               showRating
+              fractions={2}
               onFinishRating={rating => this.setState({ rating: rating })}
             />
-            <Input placeholder="Author" leftIcon={{ type: 'font-awesome', name: 'user-o' }} leftIconContainerStyle={{ padding: 10 }}
-              onChangeText={author => this.setState({ author })} value={this.state.author} />
+            <Input placeholder="Author"
+              leftIcon={{ type: 'font-awesome', name: 'user-o' }}
+              leftIconContainerStyle={{ padding: 10 }}
+              onChangeText={author => this.setState({ author })}
+              value={this.state.author} />
 
 
-            <Input placeholder="Comment" leftIcon={{ type: 'font-awesome', name: 'comment-o' }} leftIconContainerStyle={{ padding: 10 }}
+            <Input placeholder="Comment"
+              leftIcon={{ type: 'font-awesome', name: 'comment-o' }}
+              leftIconContainerStyle={{ padding: 10 }}
               onChangeText={text => this.setState({ text })} value={this.state.text} />
             <View>
               <Button
@@ -181,7 +184,7 @@ class CampsiteInfo extends Component {
 }
 
 const styles = StyleSheet.create({
-  cardrow: {
+  cardRow: {
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
