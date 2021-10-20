@@ -333,30 +333,24 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromotions();
     this.props.fetchPartners();
-    NetInfo.fetch().then(connectionInfo => {
-      (Platform.OS === 'ios')
-        ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
-        : ToastAndroid.show('Initial Network Connectivity Type: ' +
-          connectionInfo.type, ToastAndroid.LONG);
-    });
-
+    this.showNetInfo()
     this.unsubscribeNetInfo = NetInfo.addEventListener(connectionInfo => {
       this.handleConnectivityChange(connectionInfo);
     });
   }
+
+  showNetInfo = async () => {
+    const connectionInfo = await NetInfo.fetch()
+    Platform.OS === 'ios'
+      ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
+      : ToastAndroid.show('Initial Network Connectivity Type: ' +
+        connectionInfo.type, ToastAndroid.LONG);
+  }
+
   componentWillUnmount() {
     this.unsubscribeNetInfo();
   }
 
-  /*
-CLI False
-await True
-   a function to unsubscribe from network changes
-
-   The RNE Button supports an icon prop, while the RN Button does not.
-   he title prop is required for the React Native Button, but optional for the RNE Button.
-   
-  */
   handleConnectivityChange = connectionInfo => {
     let connectionMsg = 'You are now connected to an active network.';
     switch (connectionInfo.type) {
